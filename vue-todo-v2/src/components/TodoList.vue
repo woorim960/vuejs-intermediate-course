@@ -14,7 +14,15 @@
 
 <script>
 export default {
-  props: ["todoItems"]
+  props: ["todoItems"],
+  methods: {
+    removeTodo: function(todo, idx) {
+      this.$emit("removeTodo", todo, idx);
+    },
+    toggleComplete: function(todo, idx) {
+      this.$emit("toggleComplete", todo, idx);
+    }
+  },
 }
 </script>
 
