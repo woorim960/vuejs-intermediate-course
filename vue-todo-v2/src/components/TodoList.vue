@@ -14,28 +14,7 @@
 
 <script>
 export default {
-  data: function() {
-    return {
-      todoItems: [],
-    }
-  },
-  methods: {
-    removeTodo: function(todo, idx) {
-      localStorage.removeItem(todo);
-      this.todoItems.splice(idx, 1);
-    },
-    toggleComplete: function(todo) {
-      todo.completed = !todo.completed;
-      localStorage.removeItem(todo.item);
-      localStorage.setItem(todo.item, JSON.stringify(todo));
-    }
-  },
-  created: function() {
-    for (let i = 0; i < localStorage.length; i++) {
-      if (localStorage.key(i) !== 'loglevel:webpack-dev-server')
-        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-    }
-  }
+  props: ["todoItems"]
 }
 </script>
 
