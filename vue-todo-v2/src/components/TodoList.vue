@@ -1,9 +1,18 @@
 <template>
   <div>
     <transition-group name="list" tag="p">
-      <li v-for="(todo, index) in this.$store.state.todoItems" v-bind:key="todo.item">
-        <i class="checkBtn fas fa-check" v-bind:class="{ checkBtnCompleted: todo.completed }" v-on:click="toggleComplete(todo, index)"></i>
-        <span v-bind:class="{ textCompleted: todo.completed }">{{ todo.item }}</span>
+      <li
+        v-for="(todo, index) in this.$store.state.todoItems"
+        v-bind:key="todo.item"
+      >
+        <i
+          class="checkBtn fas fa-check"
+          v-bind:class="{ checkBtnCompleted: todo.completed }"
+          v-on:click="toggleComplete(todo, index)"
+        ></i>
+        <span v-bind:class="{ textCompleted: todo.completed }">{{
+          todo.item
+        }}</span>
         <span class="removeBtn" v-on:click="removeTodo(todo, index)">
           <i class="fas fa-trash-alt"></i>
         </span>
@@ -16,21 +25,21 @@
 export default {
   props: ["todoItems"],
   methods: {
-    removeTodo: function(todo, idx) {
-      this.$emit("removeTodo", todo, idx);
+    removeTodo: function (todo, idx) {
+      this.$store.commit("removeTodo", { todo, idx });
     },
-    toggleComplete: function(todo, idx) {
-      this.$emit("toggleComplete", todo, idx);
-    }
+    toggleComplete: function (todo, idx) {
+      this.$store.commit("toggleComplete", { todo, idx });
+    },
   },
-}
+};
 </script>
 
 <style scoped>
 ul {
   list-style-type: none;
   padding-left: 0px;
-  margin-top:0;
+  margin-top: 0;
   text-align: left;
 }
 
@@ -63,7 +72,8 @@ li {
   text-decoration: line-through;
 }
 
-.list-enter-active, .list-leave-active {
+.list-enter-active,
+.list-leave-active {
   transition: all 1s;
 }
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
