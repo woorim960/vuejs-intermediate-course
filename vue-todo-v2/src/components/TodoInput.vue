@@ -1,6 +1,6 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
+    <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" />
     <span class="addContainer" v-on:click="addTodo">
       <i class="fas fa-plus addBtn"></i>
     </span>
@@ -11,9 +11,7 @@
         <i class="fas fa-times closeModalBtn" @click="showModal = false"></i>
       </h3>
 
-      <div slot="body">
-        아무 것도 입력하지 않았습니다.
-      </div>
+      <div slot="body">아무 것도 입력하지 않았습니다.</div>
     </Modal>
   </div>
 </template>
@@ -22,14 +20,14 @@
 import Modal from "./common/Modal.vue";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       newTodoItem: "",
-      showModal: false
-    }
+      showModal: false,
+    };
   },
   methods: {
-    addTodo: function() {
+    addTodo: function () {
       if (this.newTodoItem.length > 0) {
         this.$store.commit("addTodo", this.newTodoItem);
         this.clearInput();
@@ -37,14 +35,14 @@ export default {
         this.showModal = true;
       }
     },
-    clearInput: function() {
+    clearInput: function () {
       this.newTodoItem = "";
-    }
+    },
   },
   components: {
     Modal,
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -56,7 +54,7 @@ input:focus {
   background: white;
   height: 50px;
   line-height: 50px;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
 .inputBox input {
@@ -67,7 +65,7 @@ input:focus {
 
 .addContainer {
   float: right;
-  background: linear-gradient(to right, #6478FB, #8763FB);
+  background: linear-gradient(to right, #6478fb, #8763fb);
   display: block;
   width: 3rem;
   border-radius: 0 5px 5px 0;
